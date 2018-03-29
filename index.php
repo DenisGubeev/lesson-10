@@ -1,4 +1,11 @@
 <?php
+
+interface CarInterface
+{
+    public function getCarPrice();
+}
+class Car extends Product implements CarInterface
+{
 class Car
 {
   public $CarModel;
@@ -17,7 +24,13 @@ class Car
     $this->CarPrice = $CarPrice; 
   }
 }
-class Tv
+
+interface TvInterface
+{
+    public function getTvPrice();
+}
+
+class Tv extends Product implements TvInterface
 {
   public $TvModel;
   public $TvSize;
@@ -69,6 +82,14 @@ class Duck
     $this->breed = $breed;
   }
 }
+
+interface ProductInterface
+{
+    public function getPrice();
+}
+abstract class Product implements ProductInterface
+{	
+	
 class Product
 {
   public $name;
