@@ -1,21 +1,40 @@
 <?php
 
+interface ProductInterface
+{
+    public function getPrice();
+}
+  abstract class Product implements ProductInterface {	
+  public $name;
+  private $price;
+  public $discount;
+  public function getPrice() {
+    if($this->discount) {
+      return $this->price * (1 - ($this->discount / 100));
+    }else{
+      return $this->price;
+    }
+  }
+  public function __construct($name, $price, $discount) {
+    $this->price = $price;
+    $this->name = $name;
+    $this->discount = $discount;
+  }	
+}
+
 interface CarInterface
 {
-    public function getCarPrice();
+  public function getCarPrice();
 }
-class Car extends Product implements CarInterface
-{
-class Car
-{
+class Car extends Product implements CarInterface {
   public $CarModel;
   public $CarColor;
   public $CarPrice;
   public function getCarPrice() {
-      if ($this->CarColor == 'Exclusive') {
-	return $this->CarPrice + 100000;
-	} else {
-	    return $this->CarPrice;
+    if ($this->CarColor == 'Exclusive') {
+      return $this->CarPrice + 100000;
+        }else {
+	  return $this->CarPrice;
 	}
   }
   public function __construct($CarModel, $CarColor, $CarPrice) {
@@ -25,13 +44,11 @@ class Car
   }
 }
 
-interface TvInterface
-{
-    public function getTvPrice();
+interface TvInterface {
+  public function getTvPrice();
 }
 
-class Tv extends Product implements TvInterface
-{
+class Tv extends Product implements TvInterface {
   public $TvModel;
   public $TvSize;
   public $TvPrice;
@@ -39,7 +56,7 @@ class Tv extends Product implements TvInterface
     if($this->TvSize <= 55){
       return $this->TvPrice + 500;
     }else {
-       echo "<i>Бесплатная доставка</i>"; 
+      echo "<i>Бесплатная доставка</i>"; 
     }
   }
   public function __construct($TvModel, $TvSize, $TvPrice) {
@@ -48,8 +65,7 @@ class Tv extends Product implements TvInterface
     $this->TvPrice = $TvPrice;	
   }
 }
-class Pen
-{
+class Pen {
   public $penColor;
   public $inkColor;
   public $penPrice;
@@ -81,32 +97,6 @@ class Duck
     $this->place = $place;
     $this->breed = $breed;
   }
-}
-
-interface ProductInterface
-{
-    public function getPrice();
-}
-abstract class Product implements ProductInterface
-{	
-	
-class Product
-{
-  public $name;
-  private $price;
-  public $discount;
-  public function getPrice() {
-    if($this->discount) {
-      return $this->price * (1 - ($this->discount / 100));
-    }else{
-      return $this->price;
-    }
-  }
-  public function __construct($name, $price, $discount) {
-    $this->price = $price;
-    $this->name = $name;
-    $this->discount = $discount;
-  }	
 }
  
 $audi= new Car('Audi', 'Exclusive', 2000000);
